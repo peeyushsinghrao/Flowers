@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Grow & Bloom</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="stage">
+  <video id="video" playsinline autoplay muted></video>
+  <canvas id="overlay"></canvas>
+  <canvas id="composite" style="display:none;"></canvas>
+
+  <!-- Status HUD -->
+  <div class="hud-top glass">
+    <div class="hud-title"><span class="dot"></span>Grow &amp; Bloom</div>
+    <div class="hud-row"><span>Grow</span><span id="growVal">0.00</span></div>
+    <div class="hud-row"><span>Bloom</span><span id="bloomVal">0.00</span></div>
+    <div class="hud-row"><span>Mode</span><span id="modeVal">Single</span></div>
+  </div>
+
+  <div class="badge right" id="rightBadge" style="display:none;">Right hand</div>
+  <div class="badge left" id="leftBadge" style="display:none;">Left hand</div>
+
+  <div class="caption">
+    <b>RIGHT HAND</b> grows the stem &nbsp;•&nbsp; <b class="left">LEFT HAND</b> opens the bloom
+  </div>
+
+  <!-- Settings -->
+  <div id="gearBtn" title="Settings">⚙</div>
+  <div id="settingsPanel" class="glass">
+    <div class="settings-group">
+      <span class="settings-label">Camera</span>
+      <select id="cameraSelect"></select>
+    </div>
+
+    <div class="settings-group">
+      <span class="settings-label">Flower</span>
+      <div class="species-toggle">
+        <button class="species-btn active" data-species="tulip">Tulip</button>
+        <button class="species-btn" data-species="rose">Rose</button>
+      </div>
+    </div>
+
+    <div class="toggle-row">
+      <span class="lbl">Mirror preview</span>
+      <div class="switch on" id="mirrorToggle"></div>
+    </div>
+    <div class="toggle-row">
+      <span class="lbl">Hand skeleton</span>
+      <div class="switch" id="skeletonToggle"></div>
+    </div>
+    <div class="toggle-row">
+      <span class="lbl">Sound</span>
+      <div class="switch" id="soundToggle"></div>
+    </div>
+
+    <button class="replay-btn" id="replayOnboarding">Replay tutorial</button>
+  </div>
+
+  <!-- Action dock: capture + record -->
+  <div id="dock">
+    <div class="dock-btn capture glass" id="captureBtn" title="Take a photo">📷</div>
+    <div class="dock-btn record glass" id="recordBtn" title="Start recording">
+      <div class="rec-dot"></div>
+      <span class="rec-timer" id="recTimer" style="display:none;">00:00</span>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="glass"></div>
+
+  <!-- Onboarding -->
+  <div id="onboarding">
+    <h1>Grow something, together.</h1>
+    <p class="sub">Two hands, one flower. Here's how it works.</p>
+    <div class="hand-demo">
+      <div class="hand-demo-item right">
+        <div class="hand-demo-icon">🖐️</div>
+        <div class="hand-demo-label">Right hand</div>
+        <div class="hand-demo-desc">Open your hand to grow the stem</div>
+      </div>
+      <div class="hand-demo-item left">
+        <div class="hand-demo-icon">🖐️</div>
+        <div class="hand-demo-label">Left hand</div>
+        <div class="hand-demo-desc">Spread your fingers to bloom it</div>
+      </div>
+    </div>
+    <button id="onboardingSkip">Got it</button>
+  </div>
+
+  <!-- Flash for capture -->
+  <div id="flash"></div>
+
+  <!-- Loading -->
+  <div id="loading">
+    <div class="spinner-lg"></div>
+    <p>Starting camera &amp; hand tracking…</p>
+  </div>
+
+  <!-- Error -->
+  <div id="errorBox">
+    <div>
+      <b id="errTitle">Camera access needed</b>
+      <p id="errDetail">This app needs your webcam and a MediaPipe-capable browser (Chrome/Edge recommended).</p>
+    </div>
+  </div>
+</div>
+
+<!-- MediaPipe Hands -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+<!-- Supabase JS client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+
+<!-- App modules -->
+<script src="js/config.js"></script>
+<script src="js/oneEuroFilter.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/particles.js"></script>
+<script src="js/flower.js"></script>
+<script src="js/gestures.js"></script>
+<script src="js/handTracking.js"></script>
+<script src="js/capture.js"></script>
+<script src="js/recorder.js"></script>
+<script src="js/onboarding.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
